@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wordpress | Filters, Hooks e Actions</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <style type="text/css">
+    html, body { 
+        font-family: Arial, Helvetica, sans-serif; 
+    }
+    h1, h2, h3 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: normal;
+    }
+    .remark-code, .remark-inline-code { font-family: Tahoma, Geneva, sans-serif; }
+    .remark-slide-content{background: transparent;}
+    .remark-slide {
+        background: url(menu-screen.png) #fff center center no-repeat;
+        background-size: contain;
+
+    }
+    .remark-slide-number{color: #fff;font-size: 1rem;font-weight: bold;}
+
+    .remark-slide-container{
+       background: url(background.png) #fff center center no-repeat;
+        background-size: cover;
+    }
+    span.letra{width: 80px;height: 110px; background-size: contain !important;float: left; background-position: center; background-repeat: no-repeat !important; background-size: cover;display: block; text-indent: -9000rem;}
+    span.letra1{width: 40px;height: 80px; background-size: contain !important;float: left; background-position: center; background-repeat: no-repeat !important; background-size: cover;display: block; text-indent: -9000rem;}
+ 
+    span.t1.a{background: url(./game_logo/ts1/A.png);}
+    span.t1.b{background: url(./game_logo/ts1/B.png);}
+    span.t1.c{background: url(./game_logo/ts1/C.png);}
+    span.t1.d{background: url(./game_logo/ts1/D.png);}
+    span.t1.e{background: url(./game_logo/ts1/E.png);}
+    span.t1.f{background: url(./game_logo/ts1/F.png);}
+    span.t1.g{background: url(./game_logo/ts1/G.png);}
+    span.t1.h{background: url(./game_logo/ts1/H.png);}
+    span.t1.i{background: url(./game_logo/ts1/I.png);}
+    span.t1.j{background: url(./game_logo/ts1/J.png);}
+    span.t1.k{background: url(./game_logo/ts1/K.png);}
+    span.t1.l{background: url(./game_logo/ts1/L.png);}
+    span.t1.m{background: url(./game_logo/ts1/M.png);}
+    span.t1.n{background: url(./game_logo/ts1/N.png);}
+    span.t1.o{background: url(./game_logo/ts1/O.png);}
+    span.t1.p{background: url(./game_logo/ts1/P.png);}
+    span.t1.q{background: url(./game_logo/ts1/Q.png);}
+    span.t1.r{background: url(./game_logo/ts1/R.png);}
+    span.t1.s{background: url(./game_logo/ts1/S.png);}
+    span.t1.t{background: url(./game_logo/ts1/T.png);}
+    span.t1.u{background: url(./game_logo/ts1/U.png);}
+    span.t1.v{background: url(./game_logo/ts1/V.png);}
+    span.t1.w{background: url(./game_logo/ts1/W.png);}
+    span.t1.x{background: url(./game_logo/ts1/X.png);}
+    span.t1.y{background: url(./game_logo/ts1/Y.png);}
+    span.t1.z{background: url(./game_logo/ts1/Z.png);}
+
+    span.t2.a{background: url(./game_logo/ts2/A.png);}
+    span.t2.b{background: url(./game_logo/ts2/B.png);}
+    span.t2.c{background: url(./game_logo/ts2/C.png);}
+    span.t2.d{background: url(./game_logo/ts2/D.png);}
+    span.t2.e{background: url(./game_logo/ts2/E.png);}
+    span.t2.f{background: url(./game_logo/ts2/F.png);}
+    span.t2.g{background: url(./game_logo/ts2/G.png);}
+    span.t2.h{background: url(./game_logo/ts2/H.png);}
+    span.t2.i{background: url(./game_logo/ts2/I.png);}
+    span.t2.j{background: url(./game_logo/ts2/J.png);}
+    span.t2.k{background: url(./game_logo/ts2/K.png);}
+    span.t2.l{background: url(./game_logo/ts2/L.png);}
+    span.t2.m{background: url(./game_logo/ts2/M.png);}
+    span.t2.n{background: url(./game_logo/ts2/N.png);}
+    span.t2.o{background: url(./game_logo/ts2/O.png);}
+    span.t2.p{background: url(./game_logo/ts2/P.png);}
+    span.t2.q{background: url(./game_logo/ts2/Q.png);}
+    span.t2.r{background: url(./game_logo/ts2/R.png);}
+    span.t2.s{background: url(./game_logo/ts2/S.png);}
+    span.t2.t{background: url(./game_logo/ts2/T.png);}
+    span.t2.u{background: url(./game_logo/ts2/U.png);}
+    span.t2.v{background: url(./game_logo/ts2/V.png);}
+    span.t2.w{background: url(./game_logo/ts2/W.png);}
+    span.t2.x{background: url(./game_logo/ts2/X.png);}
+    span.t2.y{background: url(./game_logo/ts2/Y.png);}
+    span.t2.z{background: url(./game_logo/ts2/Z.png);}
+
+    .remark-slide-container{
+        
+    }
+    .fleft{float: left;}
+    .fright{float: right;}
+    .clear{clear: both;}
+
+    .z1 {
+        width: 115px;
+        height: 142px;
+        display: block;
+        background-repeat: no-repeat;
+        background-image: url("zombie1.png");
+    }    
+    .z2 {
+        width: 115px;
+        height: 142px;
+        display: block;
+        background-repeat: no-repeat;
+        background-image: url("zombie2.png");
+    }    
+    .z3 {
+        width: 115px;
+        height: 142px;
+        display: block;
+        background-repeat: no-repeat;
+        background-image: url("zombie3.png");
+    }
+    .z4 {
+        width: 115px;
+        height: 142px;
+        display: block;
+        background-repeat: no-repeat;
+        background-image: url("zombie4.png");
+    }
+    .character1 {
+        width: 115px;
+        height: 142px;
+        display: block;
+        background-repeat: no-repeat;
+        background-image: url("character1_run/character1_run01.png");
+
+
+        -webkit-animation: play .8s steps(10) infinite;
+        -moz-animation: play .8s steps(10) infinite;
+        -ms-animation: play .8s steps(10) infinite;
+        -o-animation: play .8s steps(10) infinite;
+        animation: play .8s steps(10) infinite;
+    }
+
+    @-webkit-keyframes play {
+        0% {background-image: url("character1_run/character1_run01.png"); }
+        20% {background-image: url("character1_run/character1_run02.png"); }
+        40% {background-image: url("character1_run/character1_run03.png"); }
+        60% {background-image: url("character1_run/character1_run04.png"); }
+        70% {background-image: url("character1_run/character1_run01.png"); }
+        80% {background-image: url("character1_run/character1_run02.png"); }
+        90% {background-image: url("character1_run/character1_run03.png"); }
+        100%  {background-image: url("character1_run/character1_run04.png");  }
+    }
+
+    @-moz-keyframes play {
+        0% {background-image: url("character1_run/character1_run01.png"); }
+        20% {background-image: url("character1_run/character1_run02.png"); }
+        40% {background-image: url("character1_run/character1_run03.png"); }
+        60% {background-image: url("character1_run/character1_run04.png"); }
+        70% {background-image: url("character1_run/character1_run01.png"); }
+        80% {background-image: url("character1_run/character1_run02.png"); }
+        90% {background-image: url("character1_run/character1_run03.png"); }
+        100%  {background-image: url("character1_run/character1_run04.png");  }
+    }
+
+    @-ms-keyframes play {
+        0% {background-image: url("character1_run/character1_run01.png"); }
+        20% {background-image: url("character1_run/character1_run02.png"); }
+        40% {background-image: url("character1_run/character1_run03.png"); }
+        60% {background-image: url("character1_run/character1_run04.png"); }
+        70% {background-image: url("character1_run/character1_run01.png"); }
+        80% {background-image: url("character1_run/character1_run02.png"); }
+        90% {background-image: url("character1_run/character1_run03.png"); }
+        100%  {background-image: url("character1_run/character1_run04.png");  }
+    }
+
+    @-o-keyframes play {
+        0% {background-image: url("character1_run/character1_run01.png"); }
+        20% {background-image: url("character1_run/character1_run02.png"); }
+        40% {background-image: url("character1_run/character1_run03.png"); }
+        60% {background-image: url("character1_run/character1_run04.png"); }
+        70% {background-image: url("character1_run/character1_run01.png"); }
+        80% {background-image: url("character1_run/character1_run02.png"); }
+        90% {background-image: url("character1_run/character1_run03.png"); }
+        100%  {background-image: url("character1_run/character1_run04.png");  }
+    }
+
+    @keyframes play {
+        0% {background-image: url("character1_run/character1_run01.png"); }
+        20% {background-image: url("character1_run/character1_run02.png"); }
+        40% {background-image: url("character1_run/character1_run03.png"); }
+        60% {background-image: url("character1_run/character1_run04.png"); }
+        70% {background-image: url("character1_run/character1_run01.png"); }
+        80% {background-image: url("character1_run/character1_run02.png"); }
+        90% {background-image: url("character1_run/character1_run03.png"); }
+        100%  {background-image: url("character1_run/character1_run04.png");  }
+    } 
+    .character3 {
+        width: 115px;
+        height: 142px;
+        display: block;
+        background-repeat: no-repeat;
+        background-image: url("character3_run/character3_run01.png");
+
+
+        -webkit-animation: play2 .8s steps(10) infinite;
+        -moz-animation: play2 .8s steps(10) infinite;
+        -ms-animation: play2 .8s steps(10) infinite;
+        -o-animation: play2 .8s steps(10) infinite;
+        animation: play2 .8s steps(10) infinite;
+    }
+
+    @-webkit-keyframes play2 {
+        0% {background-image: url("character3_run/character3_run01.png"); }
+        20% {background-image: url("character3_run/character3_run02.png"); }
+        40% {background-image: url("character3_run/character3_run03.png"); }
+        60% {background-image: url("character3_run/character3_run04.png"); }
+        70% {background-image: url("character3_run/character3_run01.png"); }
+        80% {background-image: url("character3_run/character3_run02.png"); }
+        90% {background-image: url("character3_run/character3_run03.png"); }
+        100%  {background-image: url("character3_run/character3_run04.png");  }
+    }
+
+    @-moz-keyframes play2 {
+        0% {background-image: url("character3_run/character3_run01.png"); }
+        20% {background-image: url("character3_run/character3_run02.png"); }
+        40% {background-image: url("character3_run/character3_run03.png"); }
+        60% {background-image: url("character3_run/character3_run04.png"); }
+        70% {background-image: url("character3_run/character3_run01.png"); }
+        80% {background-image: url("character3_run/character3_run02.png"); }
+        90% {background-image: url("character3_run/character3_run03.png"); }
+        100%  {background-image: url("character3_run/character3_run04.png");  }
+    }
+
+    @-ms-keyframes play2 {
+        0% {background-image: url("character3_run/character3_run01.png"); }
+        20% {background-image: url("character3_run/character3_run02.png"); }
+        40% {background-image: url("character3_run/character3_run03.png"); }
+        60% {background-image: url("character3_run/character3_run04.png"); }
+        70% {background-image: url("character3_run/character3_run01.png"); }
+        80% {background-image: url("character3_run/character3_run02.png"); }
+        90% {background-image: url("character3_run/character3_run03.png"); }
+        100%  {background-image: url("character3_run/character3_run04.png");  }
+    }
+
+    @-o-keyframes play2 {
+        0% {background-image: url("character3_run/character3_run01.png"); }
+        20% {background-image: url("character3_run/character3_run02.png"); }
+        40% {background-image: url("character3_run/character3_run03.png"); }
+        60% {background-image: url("character3_run/character3_run04.png"); }
+        70% {background-image: url("character3_run/character3_run01.png"); }
+        80% {background-image: url("character3_run/character3_run02.png"); }
+        90% {background-image: url("character3_run/character3_run03.png"); }
+        100%  {background-image: url("character3_run/character3_run04.png");  }
+    }
+
+    @keyframes play2 {
+        0% {background-image: url("character3_run/character3_run01.png"); }
+        20% {background-image: url("character3_run/character3_run02.png"); }
+        40% {background-image: url("character3_run/character3_run03.png"); }
+        60% {background-image: url("character3_run/character3_run04.png"); }
+        70% {background-image: url("character3_run/character3_run01.png"); }
+        80% {background-image: url("character3_run/character3_run02.png"); }
+        90% {background-image: url("character3_run/character3_run03.png"); }
+        100%  {background-image: url("character3_run/character3_run04.png");  }
+    }
+
+    a{
+        color: #333333;
+        text-decoration: none;
+    }
+    .panel{
+        background-color: rgba(255,255,255,0.8);
+        border:none 1px rgba(255,255,255,0.4);
+        -moz-border-radius-topleft:20px;
+        -moz-border-radius-topright:20px;
+        -moz-border-radius-bottomleft:20px;
+        -moz-border-radius-bottomright:20px;
+        -webkit-border-top-left-radius:20px;
+        -webkit-border-top-right-radius:20px;
+        -webkit-border-bottom-left-radius:20px;
+        -webkit-border-bottom-right-radius:20px;
+        border-top-left-radius:20px;
+        border-top-right-radius:20px;
+        border-bottom-left-radius:20px;
+        border-bottom-right-radius:20px;
+        width: 98%;
+        height: auto;
+        min-height: 60vh;
+        padding: 2%;
+        display: block;
+        margin: 0px auto;
+    }
+    panel h1 {
+        text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
+    }
+    .walk0{margin-left: 0px;}
+    .walk20{margin-left: 20px;}
+    .walk50{margin-left: 50px;}
+    .walk100{margin-left: 100px;}
+    .walk150{margin-left: 150px;}
+    .walk200{margin-left: 200px;}
+    .walk250{margin-left: 250px;}
+    .walk300{margin-left: 300px;}
+    .walk350{margin-left: 350px;}
+    .walk400{margin-left: 400px;}
+    .walk450{margin-left: 450px;}    
+    .walk500{margin-left: 500px;}
+    .walk550{margin-left: 550px;}    
+    .walk600{margin-left: 600px;}
+    .walk650{margin-left: 650px;}
+  </style>
+</head>
+<body>
+  <textarea id="source" style="display:none;">
+
+    class: center, middle
+
+
+    <span>
+        <span class="t1 letra w">w</span>
+        <span class="t1 letra o">o</span>
+        <span class="t1 letra r">r</span>
+        <span class="t1 letra d">d</span>
+        <span class="t1 letra p">p</span>
+        <span class="t1 letra r">r</span>
+        <span class="t1 letra e">e</span>
+        <span class="t1 letra s">s</span>
+        <span class="t1 letra s">s</span>
+    </span> 
+
+    <span class="fleft">
+        <span class="t2 letra1 h">h</span>
+        <span class="t2 letra1 o">o</span>
+        <span class="t2 letra1 o">o</span>
+        <span class="t2 letra1 k">k</span>
+        <span class="t2 letra1 s">s</span>
+        <span class="t2 letra1"></span>
+        <span class="t2 letra1 f">f</span>
+        <span class="t2 letra1 i">i</span>
+        <span class="t2 letra1 l">l</span>
+        <span class="t2 letra1 t">t</span>
+        <span class="t2 letra1 e">e</span>
+        <span class="t2 letra1 r">r</span>
+        <span class="t2 letra1 s">s</span>
+        <span class="t2 letra1"></span>
+        <span class="t2 letra1 a">a</span>
+        <span class="t2 letra1 n">n</span>
+        <span class="t2 letra1 d">d</span>
+        <span class="t2 letra1 "></span>
+    </span>
+
+    <span class="fleft clear">
+        <span class="t2 letra1 a"> a</span>
+        <span class="t2 letra1 c"> c</span>
+        <span class="t2 letra1 t"> t</span>
+        <span class="t2 letra1 i"> i</span>
+        <span class="t2 letra1 o"> o</span>
+        <span class="t2 letra1 n"> n</span>
+        <span class="t2 letra1 s"> s</span>
+    </span>
+   
+
+    
+
+    ---
+
+    <div class="panel">
+    # Jackson F. de A. Mafra
+
+    - http://about.me/jacksonfdam 
+    - https://bitbucket.org/jacksonfdam 
+    - https://github.com/jacksonfdam 
+    - http://linkedin.com/in/jacksonfdam 
+    
+    @jacksonfdam 
+
+    Software Engineer at Aggrega Group, mobile training instructor at Targettrust. 
+    
+    </div>
+    <span class="fleft character1 walk0"></span>
+    <span class="fleft z1 walk50"></span>
+    <span class="fleft z2 walk20"></span>
+    <span class="fleft z3 walk20"></span>
+    <span class="fleft z4 walk20"></span>
+
+    ---
+
+    <div class="panel">
+    # The $PATH to Enlightenment
+
+    <img alt="The $PATH to Enlightenment" style="max-width: 100%; max-height: 80%;display: block;" src="ALA_407_path-to-enlightenment_960_400_81.jpg">
+
+    </div>
+    <span class="fleft character1 walk50"></span>
+
+    ---
+
+    <div class="panel">
+    # Let’s talk about hooks 
+
+    > “Hooks enable us to literally hook into parts of the WordPress page
+    > lifecycle to retrieve,  insert, or modify data, or they allow us to
+    > take certain actions behind the scenes.”
+    > - tom mcfarlin @tutsplus
+    </div>
+    <span class="fleft character1 walk100"></span>
+     <span class="fleft z2 walk20"></span>
+
+    ---
+ 
+
+    <div class="panel">
+    # Let’s talk about hooks 
+
+    <p>The success of WordPress majorly depends on the flexible and easily extendible architecture of WordPress. </p>
+    <p>This lets the plugins and themes add functionality to WordPress without changing the core WordPress files.</p>
+    <p></p>
+    <p>Also two plugins can be enabled and can extend WordPress without interfering (almost) with each other. This is possible through the Action Hooks and filters which WordPress provides and the infrastructure it gives to define and use new action hooks and filters by your plugin. </p>
+    </div>
+    <span class="fleft character1 walk150"></span>
+     <span class="fleft z4 walk100"></span>
+    ---
+ 
+
+    <div class="panel">
+    #A world without hooks
+
+    ### it’s pretty damn hacky
+    - Including extra PHP files for ajax requests
+    - Hacking into plugins to change display/functionality
+    - Hacking *gasp* WP core files
+    - Hacking theme files (when you should be using a child theme)
+    - Hackity hack hack hack. 
+    </div>
+    <span class="fleft character1 walk200"></span>
+     <span class="fleft z3 walk200"></span>
+
+    ---
+ 
+
+    <div class="panel">
+    # Let’s talk about hooks 
+
+    Modifying WordPress core files is a big no-no, so whenever you want to change existing functionality or create new functionality, you will have to turn to hooks.
+    </div>
+    <span class="fleft character1 walk250"></span>
+    <span class="fleft z1 walk50"></span>
+
+    ---
+ 
+
+    <div class="panel">
+    # Let’s talk about hooks 
+    There are two types of hooks: actions and filters.
+    
+     - ***Actions*** allow you to add extra functionality at a specific point in the processing of the page—for example, you might want to add extra widgets or menus, or add a promotional message to your page.
+     - ***Filters*** allow you to intercept and modify data as it is processed—for example, you might want to insert another CSS class in a WordPress HTML element, or modify some of your pages blocks.
+    
+    > In brief: actions do stuff; filters change stuff.
+    
+    </div>
+    <span class="fleft character1 walk300"></span>
+     <span class="fleft z2 walk20"></span>
+    
+    ---
+ 
+
+    <div class="panel">
+    # Action Reference page
+    The WordPress Action Reference page (http://codex.wordpress.org/Plugin_API/Action_Reference) 
+    has available actions listed by the following categories:
+
+    - Actions Run During a Typical Request
+    - Actions Run During an Admin Page Request
+    - Post, Page, Attachment, and Category Actions (Admin)
+    - Comment, Ping, and Trackback Actions
+    - Blogroll Actions
+    - Feed Actions
+    - Template Actions
+    - Administrative Actions
+    - Dashboard “Right Now” Widget Actions
+    
+    </div>
+    <span class="fleft character1 walk300"></span>
+     <span class="fleft z2 walk20"></span>
+    
+    ---
+     <div class="panel">
+    # Filter Reference page
+    The Codex also has a similar Filter Reference page (http://codex.wordpress.org/Plugin_API/Filter_Reference), 
+    which it lists by the following categories:
+    - Post, Page, and Attachment (Upload) Filters
+    - Blog Information and Option Filters
+    - Template Filters
+    - Redirect/Rewrite Filters
+    - WP_Query Filters
+    - Media Filters
+    - Advanced WordPress Filters
+    - Admin Bar
+    - ...
+    </div>
+    <span class="fleft character1 walk300"></span>
+     <span class="fleft z2 walk20"></span>
+    
+    ---
+ 
+
+    <div class="panel">
+    <table>
+        <tr>
+            <td>
+                <h3>filters</h3>
+                <p>Applying changes to content/data</p>
+
+                <p>Uses functions:</p>
+
+                <p> <strong>apply_filters() </strong></p>
+                <p>    <em>This is the hook.</em></p>
+                <p> <strong>add_filter() </strong></p>
+                <p>    <em>This is what you use to tie into the hook.</em></p>
+            </td>
+            <td>
+                <h3>actions </h3>
+
+                <p>Hooks your functions into an action in WP </p>
+
+                <p>Uses functions: </p>
+                <p> <strong>do_action() </strong></p>
+                <p>    <em>This is the hook.</em> </p>
+                <p> <strong>add_action() </strong></p>
+                <p>    <em>This is what you use to tie into the hook.</em></p>
+
+            </td>
+        </tr>
+    </table>
+         
+    </div>
+    <span class="fleft character1 walk350"></span>
+     <span class="fleft z1 walk20"></span>
+     
+
+    ---
+ 
+
+    <div class="panel">
+    <strong>The same, but different</strong>
+    <table>
+        <tr>
+            <td>
+                <h3>filters</h3>
+                <p>Change something you’re pulling out of WP- the content, a media file, etc</p>
+                <p>Change something you’re putting into the WP database</p>
+            </td>
+            <td>
+                <h3>actions </h3>
+                <p>Tying into existing WP processes, like sending email, saving a post, saving a comment, etc. </p>
+                <p>Add an action to your plugin/ theme to allow other developers to manipulate it without hacking </p>
+            </td>
+        </tr>
+    </table>
+         
+    </div>
+    <span class="fleft character1 walk350"></span>
+     <span class="fleft z1 walk20"></span>
+     
+
+    ---
+
+    <div class="panel">
+    <strong>The same, but different</strong>
+    <table style="width:100%">
+        <tr>
+            <td style="width:45%">
+                <h3>filters</h3>
+                <p>- do_action()
+                <p>- add_action()</p>
+                <p>- remove_action()</p>
+                <p>- has_action()</p>
+                <p>- do_action_ref_array()</p>
+                <p>- did_action()</p>
+                <p>- remove_all_actions()</p>
+            </td>
+            <td style="width:45%">
+                <h3>actions </h3>
+                <p>- apply_filters()</p>
+                <p>- add_filters()</p>
+                <p>- remove_filters()</p>
+                <p>- has_filter()</p>
+                <p>- current_filter()</p>
+                <p>- merge_filters()</p>
+                <p>- remove_all_filters()</p>
+                </td>
+        </tr>
+    </table>
+         
+    </div>
+    <span class="fleft character1 walk350"></span>
+     <span class="fleft z1 walk20"></span>
+     
+
+    ---
+ 
+    <div class="panel">
+    # Using action hooks
+    <pre>
+    hooks do_action( 'hook_name', $arg1, $arg2, ... ); 
+
+    add_action( 'hook_name', 'your_function_name', 
+                [priority], 
+                [number_args_accepted] ); 
+
+    remove_action( 'hook_name', 'function_to_remove', 
+                [priority], 
+                [number_args_accepted] );
+
+    </pre>
+    </div>
+    <span class="fleft z1 walk20"></span>
+    <span class="fleft z2 walk20"></span>
+    <span class="fleft character1 walk200"></span>
+
+    ---
+
+    <div class="panel">
+    # Using filter hooks
+    <pre>
+    $value = apply_filters( 'hook_name', $value, $value2, ... ); 
+
+    add_filter( 'hook_name', 'your_filter_function', 
+                            [priority], 
+                            [number_args_accepted] ); 
+    remove_filter( 'hook_name', 'filter_function_to_remove', 
+                            [priority], 
+                            [number_args_accepted] );
+    </pre>
+    </div>
+    <span class="fleft z1 walk20"></span>
+    <span class="fleft z2 walk20"></span>
+    <span class="fleft character1 walk200"></span>
+     
+     
+
+    ---
+ 
+
+    <div class="panel">
+    # Simplify
+
+    ***Filters*** and ***Actions*** are nearly the same thing in WordPress, 
+    almost identical syntax, capabilities, and limitations. 
+
+       <em>The difference is how you use them.</em>
+    </div>
+    <span class="fleft z1 walk20"></span>
+    <span class="fleft z2 walk20"></span>
+    <span class="fleft character1 walk200"></span>
+     
+
+    ---
+ 
+
+    <div class="panel">
+    # Let’s talk about hooks 
+    
+    ## We have 1704 Hooks today!
+
+    http://adambrown.info/p/wp_hooks
+
+    </div>
+    <span class="fleft character1 walk450"></span>
+     
+
+
+    ---
+ 
+    <div class="panel">
+    # Showme the code
+    <pre>
+        function get_excerpt($text, $length = 150) {
+            $length = apply_filters("excerpt_length", $length );
+            $excerpt = substr($text,$length);
+            return $excerpt;
+        }
+        
+            function modify_excerpt_length() { return 200;}
+        
+            add_filter("excerpt_length","modify_excerpt_length"); 
+    </pre>
+    </div>
+    <span class="fleft character1 walk500"></span>
+     
+    ---
+    
+    <div class="panel">
+    # Showme the code
+    Load a different theme template file at will 
+    <pre>
+        function wpldn_any_file() { 
+            if( !is_page( "about-us" ) ) { return; } 
+            include( '/path/to/any/file.extension' ); exit(); 
+        } 
+        add_action( 'template_redirect', 'wpldn_any_file' );
+    </pre>
+    </div>
+    <span class="fleft character1 walk500"></span>
+     
+    ---
+ 
+
+    <div class="panel">
+    # Showme the code
+    <pre>
+        add_action("wp_head", "my_copyright_meta");
+           function my_copyright_meta() {
+              if(is_singular()){
+                 echo "";
+              }
+        }
+        add_action( 'before_my_loop', 'add_comment_before_loop' );
+        function add_comment_before_loop(){
+            echo "&lt; b &gt;Welcome to my blog &lt; \b &gt;";
+        }
+    </pre>
+    </div>
+    <span class="fleft character1 walk500"></span>
+     
+    ---
+     <div class="panel">
+    ### NOTES
+    - Usually a filter comes with one argument by default- the content that you’re going to be modifying. Some filters accept additional arguments as specified in the matching “apply_filter” call. Make sure you’re aware of these when you use the filter.
+    - Though you can pass all kinds of arguments into your filter function, the only thing you get back is the value of what you’re filtering. So for example if you’re using ‘the_content’ filter, and you have your function accept the post ID as well as the default content argument, all you can safely return at the end of your function is the content.
+    - Actions don’t return any data, only true. Always true. Deal with it.
+    - Actions also allow you to pass “all” as the hook name to tie into every hook. Yikes.
+    - You can pass a class method like so: array( 'My_Class', ‘my_class_method’ ). This is especially useful in plugin development when ofttimes your plugin has several class methods. 
+
+    </div>
+    <span class="fleft character1 walk500"></span>
+     
+     
+     
+
+    ---
+ 
+
+    <div class="panel">
+        <h1>References</h1>
+        <p>
+        <br/>
+            <a href="http://blog.teamtreehouse.com/hooks-wordpress-actions-filters-examples">WordPress Hooks: Actions, Filters, and Examples</a> <br>
+        <br/>
+            <a href="http://www.smashingmagazine.com/2011/10/definitive-guide-wordpress-hooks/">WordPress Essentials: The Definitive Guide To WordPress Hooks</a> <br>
+        <br/>
+            <a href="http://designmodo.com/wordpress-hooks-filters/">Understanding and Using Hooks and Filters in WordPress</a> <br>
+        <br/>
+            <a href="http://adambrown.info/p/wp_hooks">WordPress Hooks Database</a>
+        </p>
+    </div>
+    <span class="fleft character1 walk450"></span>
+    <span class="fleft character3 walk20"></span>
+     
+    ---
+
+    class: center, middle
+    <div class="panel">
+    <h1>Thank you.</h1>
+    <h3>@jacksonfdam</h3>
+        <div style="width:300px;margin:0px auto;">
+            <span class="fleft character1 walk20"></span>
+            <span class="fleft character3 walk20" style="-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);transform: scaleX(-1);filter: FlipH;-ms-filter: "FlipH";"></span>
+        </div>
+    </div>
+
+   </textarea>
+  <script src="remark-latest.min.js">
+  </script>
+  <script>
+    var slideshow = remark.create();
+  </script>
+</body>
+</html>
